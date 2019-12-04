@@ -64,7 +64,7 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
           variables: {
             input: {
               id: todo.id,
-              title: formState.title.value,
+              name: formState.name.value,
             },
           },
         },
@@ -78,9 +78,9 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
   return (
     <form className="save-todo">
       <InputField
-        value={formState.title.value}
-        onChange={handleChangeInput('title')}
-        placeholder="Title"
+        value={formState.name.value}
+        onChange={handleChangeInput('name')}
+        placeholder="Name"
         required
       />
       <br />

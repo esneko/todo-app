@@ -2,7 +2,7 @@ import * as React from 'react'
 import TextField, { Input } from '@material/react-text-field'
 
 interface Props {
-  label: React.ReactNode
+  label?: React.ReactNode
   value: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
