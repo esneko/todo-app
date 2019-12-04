@@ -5,14 +5,14 @@ import { ApolloContext, graphql } from 'react-apollo'
 import Button from '@material/react-button'
 
 import InputField from '../components/InputField'
-import { UpdateTodoInput } from '../api'
+import { CreateTodoMutation } from '../api'
 import { getTodo, listTodos } from '../graphql/queries'
 import { updateTodo } from '../graphql/mutations'
 import { InitialState, initialState } from '../hooks/initialState'
 import { reducer } from '../hooks/reducer'
 
 interface Props {
-  todo: any
+  todo: CreateTodoMutation['createTodo']
 }
 
 const Form: React.FunctionComponent<Props> = ({ todo }) => {
@@ -23,7 +23,7 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
   const [formState, dispatch] = React.useReducer(reducer, initialState)
 
   React.useEffect(() => {
-    Object.keys(todo).map(id =>
+    todo && Object.keys(todo).map(id =>
       dispatch({
         type: 'setField',
         data: {
@@ -60,10 +60,13 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
         client,
         gql(updateTodo),
         {
-          inputType: gql(UpdateTodoInput),
+          inputType: gql(`input UpdateTodoInput {
+            id: ID
+            name: String!
+          }`),
           variables: {
             input: {
-              id: todo.id,
+              id: todo && todo.id,
               name: formState.name.value,
             },
           },
@@ -93,7 +96,7 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
 }
 
 export default graphql(gql`${getTodo}`, {
-  options: ({ id }: {id: string}) => ({
+  options: ({ id }: { id: string }) => ({
     variables: { id },
     fetchPolicy: 'cache-and-network',
   }),
