@@ -1,24 +1,35 @@
 import AWSAppSyncClient, { AUTH_TYPE } from 'aws-appsync'
-import gql from 'graphql-tag'
+import * as React from 'react'
+import { ApolloProvider } from 'react-apollo'
+import { render } from 'react-dom'
+
+import App from './components/App'
 import awsconfig from './aws-exports'
 
-import { listTodos } from './graphql/queries'
+import '@material/react-button/dist/button.min.css'
+import '@material/react-text-field/dist/text-field.min.css'
 
 const client = new AWSAppSyncClient({
   url: awsconfig.aws_appsync_graphqlEndpoint,
   region: awsconfig.aws_appsync_region,
   auth: {
     type: AUTH_TYPE.API_KEY,
-    apiKey: awsconfig.aws_appsync_apiKey,
+    apiKey: awsconfig.aws_appsync_apiKey
   }
 })
 
-const init = async () => {
-  const res = await client.query<any>({
-    query: gql(listTodos)
-  })
+const WithProvider = () => (
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>
+)
 
-  console.log(res.data.listTodos.items)
+const mountNode = document.getElementById('root')
+
+const init = async () => {
+  await client.hydrated()
+
+  render(<WithProvider />, mountNode)
 }
 
 init()
