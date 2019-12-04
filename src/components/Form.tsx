@@ -92,12 +92,12 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
   )
 }
 
-export default graphql<any, any>(gql`${getTodo}`, {
+export default graphql(gql`${getTodo}`, {
   options: ({ id }: {id: string}) => ({
     variables: { id },
     fetchPolicy: 'cache-and-network',
   }),
   props: ({ data: { getTodo } }) => ({
-    todo: getTodo,
+    todo: getTodo || {},
   }),
 })(React.memo(Form))

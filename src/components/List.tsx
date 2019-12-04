@@ -10,7 +10,7 @@ const ListTodos = ({ data: { items } }) => (
   </div>
 )
 
-export default graphql<any, any>(gql`${listTodos}`, {
+export default graphql(gql`${listTodos}`, {
   options: {
     fetchPolicy: 'cache-and-network',
   },
