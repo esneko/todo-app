@@ -3,9 +3,8 @@
 
 export const createTodo = `mutation CreateTodo(
   $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createTodo(input: $input) {
     id
     name
     description
@@ -14,9 +13,8 @@ export const createTodo = `mutation CreateTodo(
 `;
 export const updateTodo = `mutation UpdateTodo(
   $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateTodo(input: $input) {
     id
     name
     description
@@ -25,9 +23,8 @@ export const updateTodo = `mutation UpdateTodo(
 `;
 export const deleteTodo = `mutation DeleteTodo(
   $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteTodo(input: $input) {
     id
     name
     description
