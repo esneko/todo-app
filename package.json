@@ -1,7 +1,7 @@
 {
-  "name": "amplify-app",
+  "name": "todo-app",
   "version": "1.0.0",
-  "description": "React app built with AWS Amplify",
+  "description": "React app built with AWS Amplify and AWS AppSync",
   "main": "dist/index.js",
   "private": true,
   "author": "esneko",
@@ -23,7 +23,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.14",
+    "@types/react": "^16.9.15",
     "@types/react-dom": "^16.9.4",
     "parcel": "^1.12.4",
     "react-hot-loader": "^4.12.18",
