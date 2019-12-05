@@ -59,10 +59,12 @@ export type UpdateTodoInput = {
   id: string,
   name?: string | null,
   description?: string | null,
+  expectedVersion: number,
 };
 
 export type DeleteTodoInput = {
   id?: string | null,
+  expectedVersion: number,
 };
 
 export type ModelTodoFilterInput = {
@@ -101,6 +103,7 @@ export type CreateTodoMutation = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };
 
@@ -115,6 +118,7 @@ export type UpdateTodoMutation = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };
 
@@ -129,6 +133,7 @@ export type DeleteTodoMutation = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };
 
@@ -142,6 +147,7 @@ export type GetTodoQuery = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };
 
@@ -159,6 +165,7 @@ export type ListTodosQuery = {
       id: string,
       name: string,
       description: string | null,
+      version: number,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -170,6 +177,7 @@ export type OnCreateTodoSubscription = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };
 
@@ -179,6 +187,7 @@ export type OnUpdateTodoSubscription = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };
 
@@ -188,5 +197,6 @@ export type OnDeleteTodoSubscription = {
     id: string,
     name: string,
     description: string | null,
+    version: number,
   } | null,
 };

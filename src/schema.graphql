@@ -1,4 +1,4 @@
-type Todo @model {
+type Todo @model @versioned {
   id: ID!
   name: String!
   description: String

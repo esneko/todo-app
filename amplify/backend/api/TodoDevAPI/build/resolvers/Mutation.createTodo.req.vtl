@@ -1,3 +1,7 @@
+## [Start] Setting "version" to 1. **
+$util.qr($ctx.args.input.put("version", 1))
+## [End] Setting "version" to 1. **
+
 ## [Start] Prepare DynamoDB PutItem Request. **
 $util.qr($context.args.input.put("createdAt", $util.defaultIfNull($ctx.args.input.createdAt, $util.time.nowISO8601())))
 $util.qr($context.args.input.put("updatedAt", $util.defaultIfNull($ctx.args.input.updatedAt, $util.time.nowISO8601())))

@@ -3,31 +3,37 @@
 
 export const createTodo = `mutation CreateTodo(
   $input: CreateTodoInput!
+  $condition: ModelTodoConditionInput
 ) {
-  createTodo(input: $input) {
+  createTodo(input: $input, condition: $condition) {
     id
     name
     description
+    version
   }
 }
 `;
 export const updateTodo = `mutation UpdateTodo(
   $input: UpdateTodoInput!
+  $condition: ModelTodoConditionInput
 ) {
-  updateTodo(input: $input) {
+  updateTodo(input: $input, condition: $condition) {
     id
     name
     description
+    version
   }
 }
 `;
 export const deleteTodo = `mutation DeleteTodo(
   $input: DeleteTodoInput!
+  $condition: ModelTodoConditionInput
 ) {
-  deleteTodo(input: $input) {
+  deleteTodo(input: $input, condition: $condition) {
     id
     name
     description
+    version
   }
 }
 `;

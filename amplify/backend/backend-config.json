@@ -1,6 +1,6 @@
 {
 	"api": {
-		"todoAPI": {
+		"TodoDevAPI": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {

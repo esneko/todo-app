@@ -2,6 +2,7 @@ type Todo {
   id: ID!
   name: String!
   description: String
+  version: Int!
 }
 
 enum ModelSortDirection {
@@ -111,10 +112,12 @@ input UpdateTodoInput {
   id: ID!
   name: String
   description: String
+  expectedVersion: Int!
 }
 
 input DeleteTodoInput {
   id: ID
+  expectedVersion: Int!
 }
 
 type Mutation {

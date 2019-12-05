@@ -1,3 +1,16 @@
+## [Start] Inject @versioned condition.. **
+#set( $versionedCondition = {
+  "expression": "#version = :expectedVersion",
+  "expressionValues": {
+      ":expectedVersion":     $util.dynamodb.toDynamoDB($ctx.args.input.expectedVersion)
+  },
+  "expressionNames": {
+      "#version": "version"
+  }
+} )
+$util.qr($ctx.args.input.remove("expectedVersion"))
+## [End] Inject @versioned condition.. **
+
 #if( $authCondition )
   #set( $condition = $authCondition )
   #if( $modelObjectKey )
