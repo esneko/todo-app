@@ -1,4 +1,7 @@
-import { AWSAppSyncClient, buildMutation } from 'aws-appsync'
+import AWSAppSyncClient, {
+  buildMutation,
+  CacheOperationTypes
+} from 'aws-appsync'
 import gql from 'graphql-tag'
 import * as React from 'react'
 import { ApolloContext, graphql } from 'react-apollo'
@@ -65,7 +68,7 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
             id: ID!
             name: String
             description: String
-            expectedVersion: Int!
+            expectedVersion: Int
           }`),
           variables: todo && {
             input: {
@@ -75,8 +78,10 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
             }
           }
         },
-        (_variables: any) => [gql(listTodos)],
-        'Todo'
+        [gql(listTodos)],
+        'Todo',
+        'id',
+        CacheOperationTypes.UPDATE
       )
     )
     console.log('Todo updated:', result)
