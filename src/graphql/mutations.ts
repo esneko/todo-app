@@ -1,11 +1,8 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = `mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  createTodo(input: $input, condition: $condition) {
+export const createTodo = `mutation CreateTodo($input: CreateTodoInput!) {
+  createTodo(input: $input) {
     id
     name
     description
@@ -13,11 +10,8 @@ export const createTodo = `mutation CreateTodo(
   }
 }
 `;
-export const updateTodo = `mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  updateTodo(input: $input, condition: $condition) {
+export const updateTodo = `mutation UpdateTodo($input: UpdateTodoInput!) {
+  updateTodo(input: $input) {
     id
     name
     description
@@ -25,11 +19,8 @@ export const updateTodo = `mutation UpdateTodo(
   }
 }
 `;
-export const deleteTodo = `mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  deleteTodo(input: $input, condition: $condition) {
+export const deleteTodo = `mutation DeleteTodo($input: DeleteTodoInput!) {
+  deleteTodo(input: $input) {
     id
     name
     description

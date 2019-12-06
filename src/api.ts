@@ -7,54 +7,6 @@ export type CreateTodoInput = {
   description?: string | null,
 };
 
-export type ModelTodoConditionInput = {
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
-};
-
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
-
-export type ModelSizeInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-};
-
 export type UpdateTodoInput = {
   id: string,
   name?: string | null,
@@ -68,15 +20,15 @@ export type DeleteTodoInput = {
 };
 
 export type ModelTodoFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
+  id?: ModelIDFilterInput | null,
+  name?: ModelStringFilterInput | null,
+  description?: ModelStringFilterInput | null,
   and?: Array< ModelTodoFilterInput | null > | null,
   or?: Array< ModelTodoFilterInput | null > | null,
   not?: ModelTodoFilterInput | null,
 };
 
-export type ModelIDInput = {
+export type ModelIDFilterInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -87,14 +39,23 @@ export type ModelIDInput = {
   notContains?: string | null,
   between?: Array< string | null > | null,
   beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
+};
+
+export type ModelStringFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
 };
 
 export type CreateTodoMutationVariables = {
   input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
 };
 
 export type CreateTodoMutation = {
@@ -109,7 +70,6 @@ export type CreateTodoMutation = {
 
 export type UpdateTodoMutationVariables = {
   input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
 };
 
 export type UpdateTodoMutation = {
@@ -124,7 +84,6 @@ export type UpdateTodoMutation = {
 
 export type DeleteTodoMutationVariables = {
   input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
 };
 
 export type DeleteTodoMutation = {

@@ -23,18 +23,19 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
   const [formState, dispatch] = React.useReducer(reducer, initialState)
 
   React.useEffect(() => {
-    todo && Object.keys(todo).map(id =>
-      dispatch({
-        type: 'setField',
-        data: {
-          id,
-          value: {
-            ...formState[id as keyof InitialState],
-            value: todo[id as keyof InitialState],
-          },
-        },
-      })
-    )
+    todo &&
+      Object.keys(todo).map(id =>
+        dispatch({
+          type: 'setField',
+          data: {
+            id,
+            value: {
+              ...formState[id as keyof InitialState],
+              value: todo[id as keyof InitialState]
+            }
+          }
+        })
+      )
   }, [todo])
 
   const handleChangeInput = (name: string) => (
@@ -46,9 +47,9 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
         id: name,
         value: {
           ...formState[name as keyof InitialState],
-          value: event.target.value,
-        },
-      },
+          value: event.target.value
+        }
+      }
     })
   }
 
@@ -61,21 +62,24 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
         gql(updateTodo),
         {
           inputType: gql(`input UpdateTodoInput {
-            id: ID
-            name: String!
+            id: ID!
+            name: String
+            description: String
+            expectedVersion: Int!
           }`),
-          variables: {
+          variables: todo && {
             input: {
-              id: todo && todo.id,
+              id: todo.id,
               name: formState.name.value,
-            },
-          },
+              expectedVersion: todo.version
+            }
+          }
         },
         (_variables: any) => [gql(listTodos)],
         'Todo'
       )
     )
-    console.log(result)
+    console.log('Todo updated:', result)
   }
 
   return (
@@ -95,12 +99,17 @@ const Form: React.FunctionComponent<Props> = ({ todo }) => {
   )
 }
 
-export default graphql(gql`${getTodo}`, {
-  options: ({ id }: { id: string }) => ({
-    variables: { id },
-    fetchPolicy: 'cache-and-network',
-  }),
-  props: ({ data: { getTodo } }) => ({
-    todo: getTodo || {},
-  }),
-})(React.memo(Form))
+export default graphql(
+  gql`
+    ${getTodo}
+  `,
+  {
+    options: ({ id }: { id: string }) => ({
+      variables: { id },
+      fetchPolicy: 'cache-and-network'
+    }),
+    props: ({ data: { getTodo } }) => ({
+      todo: getTodo || {}
+    })
+  }
+)(React.memo(Form))

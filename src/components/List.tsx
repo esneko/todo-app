@@ -10,11 +10,16 @@ const ListTodos = ({ data: { items } }) => (
   </div>
 )
 
-export default graphql(gql`${listTodos}`, {
-  options: {
-    fetchPolicy: 'cache-and-network',
-  },
-  props: ({ data: { listTodos } }) => ({
-    data: listTodos || [],
-  }),
-})(ListTodos)
+export default graphql(
+  gql`
+    ${listTodos}
+  `,
+  {
+    options: {
+      fetchPolicy: 'cache-and-network'
+    },
+    props: ({ data: { listTodos } }) => ({
+      data: listTodos || []
+    })
+  }
+)(ListTodos)
